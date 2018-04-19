@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:background="@drawable/bg_signup"
+    android:gravity="center_vertical"
+    android:padding="40dp">
+
+    <TextView
+        android:id="@+id/signup_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar Conta"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="32sp"
+        android:paddingBottom="8dp"
+        />
+
+    <EditText
+        android:id="@+id/signup_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_titulo"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxEms="10"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="nome"
+        android:drawableTint="@android:color/white"
+        android:textColorHint="@color/cinzinha"
+        android:textColor="@android:color/white"
+        android:inputType="text"
+        android:backgroundTint="@color/cinzinha"/>
+
+    <EditText
+        android:id="@+id/signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_nome"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxEms="10"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="email"
+        android:drawableTint="@android:color/white"
+        android:textColorHint="@color/cinzinha"
+        android:textColor="@android:color/white"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/cinzinha"/>
+
+    <EditText
+        android:id="@+id/signup_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_email"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxLength="8"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_lock_black_24dp"
+        android:hint="senha"
+        android:drawableTint="@android:color/white"
+        android:textColorHint="@color/cinzinha"
+        android:textColor="@android:color/white"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/cinzinha"/>
+
+    <Button
+        android:id="@+id/signup_btn_cadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_senha"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_botao"
+        android:minWidth="120dp"
+        android:text="criar conta"
+        android:textAllCaps="false"
+        android:textColor="@color/branco"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/signup_possui_conta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_senha"
+        android:layout_toRightOf="@+id/signup_btn_cadastrar"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:text="já possuo uma conta"
+        android:textColor="@color/cinzinha"/>
+
+
+
+</RelativeLayout>

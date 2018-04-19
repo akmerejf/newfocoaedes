@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/branco"
+    tools:context=".LoginActivity"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp">
+
+    <ImageView
+        android:id="@+id/login_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/com_facebook_auth_dialog_cancel_background"
+        android:tint="@color/cinza"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/login_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:minHeight="200dp"
+        android:minWidth="200dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_img"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxEms="10"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="email"
+        android:drawableTint="@color/cinza"
+        android:textColorHint="@color/cinza"
+        android:textColor="@color/cinza"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/Principal"/>
+
+    <EditText
+        android:id="@+id/login_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_email"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxLength="8"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_lock_black_24dp"
+        android:hint="senha"
+        android:drawableTint="@color/cinza"
+        android:textColorHint="@color/cinza"
+        android:textColor="@color/cinza"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/Principal"/>
+
+
+    <Button
+        android:id="@+id/login_btn_entrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_senha"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:background="@drawable/bg_botao_cadastrar"
+        android:text="entrar"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/Principal"/>
+
+    <LinearLayout
+        android:id="@+id/login_btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_btn_entrar"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/login_btn_fb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/bg_botao_fb"
+            android:text="facebook"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/branco"/>
+
+        <Button
+            android:id="@+id/login_btn_cadastrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/bg_botao"
+            android:text="criar conta"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/branco"/>
+
+
+    </LinearLayout>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_fb_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/login_btns"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/login_esquecer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_fb_button"
+        android:layout_centerHorizontal="true"
+        android:text="esqueci a senha"
+        android:textColor="@color/Principal"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>

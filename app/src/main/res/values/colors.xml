@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Principal">#83d98e</color>
+    <color name="branco">#ffffff</color>
+    <color name="preto">#000000</color>
+    <color name="cinza">#a1a1a1</color>
+    <color name="cinzinha">#ebebeb</color>
+    <color name="linha_fina">#f5f5f5</color>
+    <color name="cinzinha2">#d6d6d6</color>
+    <color name="google">#d62d20</color>
+
+    <!--para as categorias-->
+    <color name="ic_aqua">#83d8d9</color>
+    <color name="ic_verde">#83d98e</color>
+    <color name="ic_vermelho">#d98683</color>
+    <color name="ic_azul">#83bbd9</color>
+    <color name="ic_laranja">#d9bc83</color>
+    <color name="ic_rosa">#d983b5</color>
+    <color name="ic_roxo">#a483d9</color>
+    <color name="ic_amarelo">#d5d983</color>
+    <color name="ic_lilas">#c683d9</color>
+
+    <color name="facebook">#3b5998</color>
+</resources>

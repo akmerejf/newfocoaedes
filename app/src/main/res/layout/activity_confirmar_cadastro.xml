@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/branco"
+    tools:context=".ConfirmarCadastroActivity"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp">
+
+    <ImageView
+        android:id="@+id/confirmar_cadastro_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:minHeight="140dp"
+        android:minWidth="140dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/confirmar_cadastro_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirmar_cadastro_picture"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:maxEms="10"
+        android:textColor="@color/preto"
+        android:backgroundTint="@color/Principal"/>
+
+
+    <Button
+        android:id="@+id/confirmar_cadastro_btn_confirmar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirmar_cadastro_nome"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:background="@drawable/bg_botao_cadastrar"
+        android:text="criar conta"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/Principal"/>
+
+    <TextView
+        android:id="@+id/confirmar_cadastro_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirmar_cadastro_btn_confirmar"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="250dp"
+        android:textColor="@color/preto"
+        android:backgroundTint="@color/Principal"/>
+
+    <FrameLayout
+        android:id="@+id/inflar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</RelativeLayout>
+
