@@ -6,4 +6,6 @@
     <string name="title_mapa">Mapa</string>
     <string name="title_registro">Registro</string>
     <string name="title_ocorrencias">Ocorrencias</string>
+    <string name="denunciar_doenca">Denuncie um possível sintoma relacionado ao mosquito da dengue ou um caso de dengue comprovado pelo seu bairro</string>
+    <string name="denunciar_foco">Denuncie água parada, larva do mosquito ou qualquer coisa relacionada a proliferação do mosquito da dengue!</string>
 </resources>
