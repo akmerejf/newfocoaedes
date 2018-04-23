@@ -43,8 +43,11 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:label="Login">
+        </activity>
+        <activity
+            android:name=".ConfirmarCadastroActivity"
+            android:label="Confirmar Cadastro">
         </activity>
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAfSV1IAKitbfJjwSndOM6fx9abm3m4ER0"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId"

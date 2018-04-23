@@ -131,7 +131,6 @@ public class AuthHelper {
     }
 
     public boolean isAnyUser(final Context context) {
-        Intent intent;
         Account[] accounts;
         String authToken="";
         if (mAccountManager == null)
@@ -141,8 +140,8 @@ public class AuthHelper {
             authToken = mAccountManager.peekAuthToken(accounts[0], "full_access");
         //        Se não há um token do Facebook ou da API invalida o token do face;
         FacebookSdk.sdkInitialize(context);
-        if (TextUtils.isEmpty(authToken) && AccessToken.getCurrentAccessToken() == null) {
-
+        if (TextUtils.isEmpty(authToken)) {
+            AccessToken.setCurrentAccessToken(null);
             return false;
         }
 
@@ -163,7 +162,7 @@ public class AuthHelper {
             mAccountManager.setAuthToken(account, "full_access", response.body().getAuthToken());
             return;
         }
-        account = new Account(email, "com.desapego");
+        account = new Account(email, "com.focoaedes");
         mAccountManager.addAccountExplicitly(account, null, null);
         //Adiciona o novo token pro usuario
         mAccountManager.setAuthToken(account, "full_access", response.body().getAuthToken());
@@ -176,7 +175,7 @@ public class AuthHelper {
         //                  Usa a instância do account manager em uso ou cria uma nova neste contexto
         if (mAccountManager == null)
             setAccountManager(context);
-        if (mAccountManager.getAccountsByType("com.desapego")[0] != null) {
+        if (mAccountManager.getAccountsByType("com.focoaedes")[0] != null) {
             String token = mAccountManager.peekAuthToken(mAccountManager.getAccountsByType("com.focoaedes")[0], "full_access");
             mAccountManager.invalidateAuthToken("com.focoaedes", token);
             mAccountManager.removeAccount(mAccountManager.getAccountsByType("com.focoaedes")[0], null, null);

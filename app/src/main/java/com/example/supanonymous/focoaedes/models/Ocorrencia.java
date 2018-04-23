@@ -23,6 +23,39 @@ public class Ocorrencia {
     @SerializedName("profile_id")
     @Expose
     private MongoId profile_id;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("lng")
+    @Expose
+    private String lng;
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
 
     public String getId() {
         return id.get$oid();

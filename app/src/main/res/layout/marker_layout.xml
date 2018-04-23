@@ -17,6 +17,17 @@
 
         android:layout_gravity="center"/>
 
+    <TextView
+        android:id="@+id/marker_snippet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:maxEms="10"
+        android:textStyle="bold"
+        android:textSize="16dp"
+
+        android:layout_gravity="center"/>
+
     <ImageView
         android:id="@+id/marker_foto"
         android:layout_width="60dp"
