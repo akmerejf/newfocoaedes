@@ -1,6 +1,7 @@
 package com.example.supanonymous.focoaedes;
 
 import android.accounts.AccountManager;
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create(); //utilizar os retornos do facebook
         //                  Verifica se há uma sessão do Facebook ou da API
-
 
 
 //------------------Listeners-----------------------------------------------------------------------//
