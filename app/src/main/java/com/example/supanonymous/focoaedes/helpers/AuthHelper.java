@@ -17,6 +17,7 @@ import com.example.supanonymous.focoaedes.models.Register;
 import com.example.supanonymous.focoaedes.services.ApiService;
 import com.example.supanonymous.focoaedes.utils.ServiceGenerator;
 import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,9 +78,6 @@ public class AuthHelper {
                 //condição se os dados foram capturados
                 if (!response.isSuccessful()) {
                     Log.i("REGISTRO", "" + response.code()+": " + response.body());
-                    Intent intent = new Intent(context, LoginActivity.class);
-
-                    abrirNovaActivity(context, intent);
 
                     Log.i("LISTA", "Erro: " + "Erro: " + response.code());
                 } else {
@@ -142,9 +140,9 @@ public class AuthHelper {
         if (accounts.length > 0)
             authToken = mAccountManager.peekAuthToken(accounts[0], "full_access");
         //        Se não há um token do Facebook ou da API invalida o token do face;
-        if (TextUtils.isEmpty(authToken)) {
-            Toast.makeText(context, "Precisa logar", Toast.LENGTH_SHORT).show();
-            AccessToken.setCurrentAccessToken(null);
+        FacebookSdk.sdkInitialize(context);
+        if (TextUtils.isEmpty(authToken) && AccessToken.getCurrentAccessToken() == null) {
+
             return false;
         }
 

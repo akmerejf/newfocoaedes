@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import com.example.supanonymous.focoaedes.helpers.AuthHelper;
+import com.example.supanonymous.focoaedes.models.Login;
 import com.example.supanonymous.focoaedes.models.User;
 import com.example.supanonymous.focoaedes.services.ApiService;
 import com.example.supanonymous.focoaedes.utils.ServiceGenerator;
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private User user;
     private String accountType;
     private AuthHelper loginHelper;
+    private Class<?> callerClass;
 
     //------------------clico de vida-------------------------------------------------------------------//
     @Override
@@ -59,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Referência da activity que chamou o login
+        String caller = getIntent().getStringExtra("caller");
+        try {
+            callerClass = Class.forName(caller);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         loginHelper = new AuthHelper();
         //Pega o account type do AccountManager setado pelo DesapegoAccountAuthenticator
         accountType = getIntent().getStringExtra(AccountManager.KEY_ACCOUNT_TYPE);
@@ -105,7 +115,13 @@ public class LoginActivity extends AppCompatActivity {
         criar_conta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                if (callerClass != null){
+                    intent.putExtra("caller", callerClass);
+                }else{
+                    intent.putExtra("caller", MainActivity.class);
+                }
+                startActivity(intent);
                 finish();
             }
         });

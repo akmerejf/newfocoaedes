@@ -8,4 +8,7 @@
     <string name="title_ocorrencias">Ocorrencias</string>
     <string name="denunciar_doenca">Denuncie um possível sintoma relacionado ao mosquito da dengue ou um caso de dengue comprovado pelo seu bairro</string>
     <string name="denunciar_foco">Denuncie água parada, larva do mosquito ou qualquer coisa relacionada a proliferação do mosquito da dengue!</string>
+    <string name="facebook_app_id">239272153481006</string>
+    <string name="fb_login_protocol_scheme">fb239272153481006</string>
+
 </resources>
