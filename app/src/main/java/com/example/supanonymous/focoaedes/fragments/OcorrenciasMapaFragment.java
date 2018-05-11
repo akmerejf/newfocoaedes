@@ -21,6 +21,8 @@ import com.example.supanonymous.focoaedes.OcorrenciaDetails;
 import com.example.supanonymous.focoaedes.R;
 import com.example.supanonymous.focoaedes.models.Ocorrencia;
 import com.example.supanonymous.focoaedes.models.OcorrenciaClusterItem;
+import com.example.supanonymous.focoaedes.services.ApiService;
+import com.example.supanonymous.focoaedes.utils.ServiceGenerator;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,6 +41,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by supanonymous on 11/04/18.
@@ -64,6 +70,7 @@ public class OcorrenciasMapaFragment extends Fragment implements
     private List<OcorrenciaClusterItem> listaClusterItems;
     private ClusterManager<OcorrenciaClusterItem> mClusterManager;
     private OcorrenciaClusterItem clickedClusterItem;
+    private ApiService apiService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,44 +112,40 @@ public class OcorrenciasMapaFragment extends Fragment implements
 
 
     public void geoLocaliza() throws IOException {
+        apiService = ServiceGenerator.createService(ApiService.class);
+        apiService.getOcorrenciasMap().enqueue(new Callback<List<Ocorrencia>>() {
+            private MarkerOptions options;
+            @Override
+            public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
+                if (!response.isSuccessful()){
+                    Log.i("ERRO RESPOSTA", ""+response.code());
+                }else {
+                    options = new MarkerOptions();
+                    LatLng latLng;
+                    mClusterManager = new ClusterManager<>(getContext(), map);
+                    listaClusterItems = new ArrayList<>();
+                    ocorrenciaMarkerIdMap = new HashMap<>();
+                    if (response.body().size() > 0)
+                        for (Ocorrencia ocorrencia : response.body()){
+                          double lat = Double.valueOf(ocorrencia.getLat());
+                          double lng = Double.valueOf(ocorrencia.getLng());
+                          OcorrenciaClusterItem clusterItem = new OcorrenciaClusterItem(lat, lng, ocorrencia.getName(), ocorrencia.getDescricao(), ocorrencia.getId());
+                          ocorrenciaMarkerIdMap.put(ocorrencia.getId(), clusterItem);
+                          listaClusterItems.add(clusterItem);
+                          listaOcorrencia.add(ocorrencia);
+                        }
+                    //Configura o Cluster
+                    mapView.onResume();
+                    setUpClusterer();
+                    addClusterItems();
+                }
+            }
 
-        //Pega a Tabela do FireBase
-//        ocorrenciasRef = FirebaseDatabase.getInstance ().getReference ().child ( "ocorrencias" );
-
-        // Read from the database
-//        ocorrenciasRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            private MarkerOptions options;
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                options = new MarkerOptions();
-//                LatLng latLng;
-//                mClusterManager = new ClusterManager<>(getContext(), map);
-//                listaClusterItems = new ArrayList<>();
-//                ocorrenciaMarkerIdMap = new HashMap<>();
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Ocorrencia ocorrencia = snapshot.getValue(Ocorrencia.class);
-//                    listaOcorrencia.add(ocorrencia);
-//                    double lat = Double.valueOf(ocorrencia.getLatitude()) ;
-//                    double lng = Double.valueOf(ocorrencia.getLongitude());
-//                    OcorrenciaClusterItem clusterItem = new OcorrenciaClusterItem(lat, lng, ocorrencia.getEndereco(), ocorrencia.getComentario(), ocorrencia.getUrlImagem(), snapshot.getKey());
-//                    ocorrenciaMarkerIdMap.put(snapshot.getValue().toString(), clusterItem);
-//                    listaClusterItems.add(clusterItem);
-//                }
-//
-//                //Configura o Cluster
-//                mapView.onResume();
-//                setUpClusterer();
-//                addClusterItems();
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("FBase", "Failed to read value.", error.toException());
-//            }
-//        });
+            @Override
+            public void onFailure(Call<List<Ocorrencia>> call, Throwable t) {
+                Log.i("ERRO RESPOSTA", t.getMessage());
+            }
+        });
 
     }
 
@@ -205,13 +208,15 @@ public class OcorrenciasMapaFragment extends Fragment implements
         @Override
         public View getInfoContents(Marker marker) {
             infoWindowOcorrenciaClusterItem = ocorrenciaMarkerIdMap.get(marker.getId());
-            TextView markertitulo =  myContentsView.findViewById(R.id.marker_titulo);
-            ImageView markerimagem = myContentsView.findViewById(R.id.marker_foto);
-            markertitulo.setText(marker.getTitle());
+            TextView markerTitulo =  myContentsView.findViewById(R.id.marker_titulo);
+            TextView markerSnippet =  myContentsView.findViewById(R.id.marker_snippet);
+            ImageView markerImagem = myContentsView.findViewById(R.id.marker_foto);
+            markerTitulo.setText(marker.getTitle());
+            markerSnippet.setText(infoWindowOcorrenciaClusterItem.getSnippet());
             Glide.with(getContext()).
                     load(infoWindowOcorrenciaClusterItem.getUrlImagem()).
                     apply(new RequestOptions().override(180, 120).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)).
-                    into(markerimagem);
+                    into(markerImagem);
 
             return myContentsView;
         }

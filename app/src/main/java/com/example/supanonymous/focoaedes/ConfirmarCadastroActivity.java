@@ -63,7 +63,7 @@ public class ConfirmarCadastroActivity extends AppCompatActivity {
         info.setText(ss);
         info.setMovementMethod(LinkMovementMethod.getInstance());
         nome.setText(bundle.getString("NAME"));
-       Glide.with(this).load(bundle.getString("PICTURE")).into(foto_perfil);//altera o icone para foto do perfil do facebook
+        Glide.with(this).load(bundle.getString("PICTURE")).into(foto_perfil);//altera o icone para foto do perfil do facebook
         criar_conta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

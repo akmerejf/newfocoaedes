@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Nova Denúncia"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/branco"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_arrow_back_black_24dp"
+            android:drawableRight="@drawable/ic_arrow_back_black_24dp" />
 
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,4 +81,4 @@
                 android:drawableRight="@drawable/ic_chevron_right_black_24dp" />
         </RelativeLayout>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

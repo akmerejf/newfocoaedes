@@ -17,6 +17,7 @@ import com.example.supanonymous.focoaedes.models.Register;
 import com.example.supanonymous.focoaedes.services.ApiService;
 import com.example.supanonymous.focoaedes.utils.ServiceGenerator;
 import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,9 +78,6 @@ public class AuthHelper {
                 //condição se os dados foram capturados
                 if (!response.isSuccessful()) {
                     Log.i("REGISTRO", "" + response.code()+": " + response.body());
-                    Intent intent = new Intent(context, LoginActivity.class);
-
-                    abrirNovaActivity(context, intent);
 
                     Log.i("LISTA", "Erro: " + "Erro: " + response.code());
                 } else {
@@ -133,7 +131,6 @@ public class AuthHelper {
     }
 
     public boolean isAnyUser(final Context context) {
-        Intent intent;
         Account[] accounts;
         String authToken="";
         if (mAccountManager == null)
@@ -142,8 +139,8 @@ public class AuthHelper {
         if (accounts.length > 0)
             authToken = mAccountManager.peekAuthToken(accounts[0], "full_access");
         //        Se não há um token do Facebook ou da API invalida o token do face;
+        FacebookSdk.sdkInitialize(context);
         if (TextUtils.isEmpty(authToken)) {
-            Toast.makeText(context, "Precisa logar", Toast.LENGTH_SHORT).show();
             AccessToken.setCurrentAccessToken(null);
             return false;
         }
@@ -165,7 +162,7 @@ public class AuthHelper {
             mAccountManager.setAuthToken(account, "full_access", response.body().getAuthToken());
             return;
         }
-        account = new Account(email, "com.desapego");
+        account = new Account(email, "com.focoaedes");
         mAccountManager.addAccountExplicitly(account, null, null);
         //Adiciona o novo token pro usuario
         mAccountManager.setAuthToken(account, "full_access", response.body().getAuthToken());
@@ -178,7 +175,7 @@ public class AuthHelper {
         //                  Usa a instância do account manager em uso ou cria uma nova neste contexto
         if (mAccountManager == null)
             setAccountManager(context);
-        if (mAccountManager.getAccountsByType("com.desapego")[0] != null) {
+        if (mAccountManager.getAccountsByType("com.focoaedes")[0] != null) {
             String token = mAccountManager.peekAuthToken(mAccountManager.getAccountsByType("com.focoaedes")[0], "full_access");
             mAccountManager.invalidateAuthToken("com.focoaedes", token);
             mAccountManager.removeAccount(mAccountManager.getAccountsByType("com.focoaedes")[0], null, null);

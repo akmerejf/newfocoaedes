@@ -21,6 +21,9 @@ public interface ApiService {
     Call<List<Ocorrencia>> getOcorrencias(
             @QueryMap Map<String, String> options
     );
+    @GET("ocorrencias")
+    Call<List<Ocorrencia>> getOcorrenciasMap(
+    );
 
     @GET("ocorrencia/{id}")
     Call<Ocorrencia> getUserOcorrencia(@Path("id") String id);
