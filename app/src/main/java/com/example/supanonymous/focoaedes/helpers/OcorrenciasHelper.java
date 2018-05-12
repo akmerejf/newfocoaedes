@@ -65,12 +65,12 @@ public class OcorrenciasHelper {
                     Log.i("LISTA", "Erro: " + "Erro: " + response.code());
                 } else {
                     //condição se os dados foram capturados
-                    HorizontalDottedProgress loadingBar = ((Activity) context).findViewById(R.id.loading_bar);
-                    itemsList.addAll(response.body());
-                    //Atualiza o adapter com os items da api
-                    adapter.notifyDataSetChanged();
-                    loadingBar.clearAnimation();
-                    loadingBar.setVisibility(View.GONE);
+////                    HorizontalDottedProgress loadingBar = ((Activity) context).findViewById(R.id.loading_bar);
+//                    itemsList.addAll(response.body());
+//                    //Atualiza o adapter com os items da api
+//                    adapter.notifyDataSetChanged();
+//                    loadingBar.clearAnimation();
+//                    loadingBar.setVisibility(View.GONE);
                 }
             }
 

@@ -81,7 +81,7 @@ public class OcorrenciasMapaFragment extends Fragment implements
         // Gets the MapView from the XML layout and creates it
         mapView.onCreate(savedInstanceState);
         // Gets to GoogleMap from the MapView and does initialization stuff
-        mapView.getMapAsync(this);
+//        mapView.getMapAsync(this);
         // Updates the location and zoom of the MapView
 
         return v;

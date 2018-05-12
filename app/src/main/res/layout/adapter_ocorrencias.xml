@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/branco"
-    android:orientation="vertical"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp"
-    tools:ignore="RtlSymmetry">
+    android:id="@+id/cv"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="5dp">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/principal_lista_img"
-        android:layout_width="120dp"
-        android:layout_height="140dp"
-        android:elevation="5dp"
-        android:scaleType="fitXY"
-        app:riv_corner_radius="15dp"
-        android:src="@mipmap/luffy"
-        tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/principal_lista_titulo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="6"
-        android:maxLines="2"
-        android:layout_margin="5dp"
-        android:text="mugiwara"/>
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            >
+
+            <TextView
+                android:id="@+id/textView_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+            <!--My dropdown Button -->
+            <RelativeLayout
+                android:id="@+id/button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                >
+
+                <View
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/ic_add"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignParentEnd="false" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <!--The layout below is my ExpandableLayout -->
+        <LinearLayout
+            android:id="@+id/expandableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imageView_Owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_Owner"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/textView_OwnerUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
-</LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
