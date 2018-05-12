@@ -1,13 +1,23 @@
 package com.example.supanonymous.focoaedes;
 
+import android.content.ClipData;
+import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasListaFragment;
@@ -24,7 +34,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
+
+    private FloatingActionButton fab_faq, fab_perfil, fab_menu;
+    private Animation fab_open, fab_close, fab_rotate, fab_back_rotate;
+    private boolean aberto = false;
+    private Typeface fontFace = null;
 
     private FragmentManager fragmentManager;
     //Listener do navigation menu
@@ -75,17 +90,59 @@ public class MainActivity extends AppCompatActivity {
                         android.Manifest.permission.ACCESS_COARSE_LOCATION,
                         android.Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
-                    @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
 
                         fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.add(R.id.ocorrencias_tabs, new OcorrenciasMapaFragment(), "ocorrencias_mapa").commit();
 
                     }
-                    @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                         /* ... */
                     }
                 }).check();
-    }
 
+        //--------Botões de menu
+        fab_faq = (FloatingActionButton) findViewById(R.id.fab_faq);
+        fab_perfil = (FloatingActionButton) findViewById(R.id.fab_perfil);
+        fab_menu = (FloatingActionButton) findViewById(R.id.fab_menu);
+
+        //--------Animação do menu
+
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_close);
+        fab_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_rotate);
+        fab_back_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_back_rotate);
+
+        //-------Fab rotações
+
+        fab_menu.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                if (aberto) {
+                    fab_menu.startAnimation(fab_back_rotate);
+                    fab_perfil.startAnimation(fab_close);
+                    fab_perfil.setClickable(false);
+                    fab_faq.startAnimation(fab_close);
+                    fab_faq.setClickable(false);
+                    aberto = false;
+
+                } else {
+
+                    fab_menu.startAnimation(fab_rotate);
+                    fab_perfil.startAnimation(fab_open);
+                    fab_perfil.setClickable(true);
+                    fab_faq.startAnimation(fab_open);
+                    fab_faq.setClickable(true);
+                    aberto = true;
+                }
+            }
+        });
+
+    }
 }

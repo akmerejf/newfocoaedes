@@ -1,35 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.supanonymous.focoaedes.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/ocorrencias_tabs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/navigation"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/branco"
+        app:menu="@menu/navigation"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"/>
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/ocorrencias_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fab_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="141dp"
+        android:tint="@color/branco"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="10dp"
+        app:fabCustomSize="45dp"
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/ic_person_black_24dp"
+        android:layout_alignRight="@+id/fab_menu" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_faq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/fab_perfil"
+        android:layout_marginBottom="197dp"
+        android:tint="@color/branco"
+        android:visibility="invisible"
+        app:backgroundTint="#a5d6a7"
+        app:elevation="10dp"
+        app:fabCustomSize="45dp"
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/ic_info_outline_black_24dp"
+        android:layout_alignLeft="@+id/fab_perfil" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="82dp"
+        android:layout_marginEnd="25dp"
+        app:backgroundTint="@color/branco"
+        app:elevation="12dp"
+        app:fabCustomSize="50dp"
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/ic_blur_on_black_24dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

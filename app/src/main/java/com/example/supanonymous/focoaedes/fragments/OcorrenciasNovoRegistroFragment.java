@@ -1,23 +1,17 @@
-package com.example.supanonymous.focoaedes;
+package com.example.supanonymous.focoaedes.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.supanonymous.focoaedes.R;
-import com.example.supanonymous.focoaedes.fragments.FragmentOcorrenciaRegistroFoco;
 
 /**
  * Created by supanonymous on 11/04/18.
@@ -39,14 +33,13 @@ public class OcorrenciasNovoRegistroFragment extends Fragment implements View.On
 
     @Override
     public void onClick(View view) {
-        RelativeLayout foco = (RelativeLayout) view.findViewById(R.id.novaFoco);
+        TextView foco = (TextView) view.findViewById(R.id.txt_foco_descricao);
 
         foco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = OcorrenciasNovoRegistroFragment.this.fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
-                //confirmar transição
                 transaction.replace(R.id.NovaOcorrencia, new FragmentOcorrenciaRegistroFoco(), "Registro_foco").commit();
             }
         });
