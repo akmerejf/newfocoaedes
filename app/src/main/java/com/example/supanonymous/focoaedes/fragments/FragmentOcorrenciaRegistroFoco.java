@@ -1,110 +1,135 @@
 package com.example.supanonymous.focoaedes.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.example.supanonymous.focoaedes.MainActivity;
 import com.example.supanonymous.focoaedes.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentOcorrenciaRegistroFoco.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentOcorrenciaRegistroFoco#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentOcorrenciaRegistroFoco extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    EditText titulo, endereco, bairro, descricao;
+    Button denunciar;
+    ImageView pegar_localizacao, foto;
+    private final int CAMERA_REQUEST = 1888;
+    final int   CROP_PIC = 2;
+    private Uri pic_uri;
+    private byte[] imagem;
+    private String encodedImage;
+    private View v;
+    String data = "";
+    SimpleDateFormat formato;
 
-    private OnFragmentInteractionListener mListener;
-
-    public FragmentOcorrenciaRegistroFoco() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentOcorrenciaRegistroFoco.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentOcorrenciaRegistroFoco newInstance(String param1, String param2) {
-        FragmentOcorrenciaRegistroFoco fragment = new FragmentOcorrenciaRegistroFoco();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ocorrencia_registro_foco, container, false);
+        v = inflater.inflate(R.layout.fragment_ocorrencia_registro_foco, container, false);
+
+
+        titulo = (EditText) v.findViewById(R.id.nova_titulo);
+        endereco = (EditText) v.findViewById(R.id.nova_endereco);
+        bairro = (EditText) v.findViewById(R.id.nova_bairro);
+        pegar_localizacao = (ImageView) v.findViewById(R.id.atual_localizacao);
+        foto =  v.findViewById(R.id.nota_foto);
+        descricao = (EditText) v.findViewById(R.id.nova_descricao);
+        denunciar = (Button) v.findViewById(R.id.btn_nova_salvar_doenca);
+        formato = new SimpleDateFormat("dd/MM/yyyy");
+        data = formato.format(new Date());
+
+
+        pegar_localizacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Geocoder geocoder = new Geocoder(getActivity());
+                List<Address> addresses;
+
+//                addresses = geocoder.getFromLocation(
+//                        ((MainActivity) getActivity()).localizacao.getLatitude(),
+//                        ((MainActivity) getActivity()).localizacao.getLongetude(),
+//                        1
+//                );
+            }
+        });
+
+        foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+                }
+            }
+        });
+
+
+        return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    //-------------------metodos pra camera----------------
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //se a camera for ativado
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+
+            Bundle extras = data.getExtras();
+            Bitmap photo = extras.getParcelable("data");
+
+            foto.setImageBitmap(photo);
+
+            converterImagem(photo);
+        }
+        //se o cortador de foto for ativado
+        else if (requestCode == CROP_PIC) {
+
+            Bundle extras = data.getExtras();
+            Bitmap photo = extras.getParcelable("data");
+
+            foto.setImageBitmap(photo);
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    void converterImagem(Bitmap photo){
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        File file = new File(Environment.getExternalStorageDirectory() + "/DCIM/", "image" + new Date().getTime() + ".png");
+        pic_uri = Uri.fromFile(file);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+        imagem = baos.toByteArray();
+        encodedImage = Base64.encodeToString(imagem, Base64.DEFAULT);
     }
 }

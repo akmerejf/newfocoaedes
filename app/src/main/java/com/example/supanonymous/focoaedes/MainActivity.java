@@ -1,6 +1,7 @@
 package com.example.supanonymous.focoaedes;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.supanonymous.focoaedes.fragments.InformacoesFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasListaFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasMapaFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasNovoRegistroFragment;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity  {
     private FragmentManager fragmentManager;
     //Listener do navigation menu
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
+            = (MenuItem item) -> {
 
         switch (item.getItemId()) {
             case R.id.navigation_mapas:
@@ -56,7 +58,9 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.navigation_lista_ocorrencias:
                 switchFragment("ocorrencias_lista", new OcorrenciasListaFragment());
                 return true;
-
+            case R.id.navigation_configuracoes:
+                switchFragment("informacoesFragment", new InformacoesFragment());
+                return true;
         }
         return false;
     };
@@ -105,44 +109,44 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 }).check();
 
-        //--------Botões de menu
-        fab_faq = (FloatingActionButton) findViewById(R.id.fab_faq);
-        fab_perfil = (FloatingActionButton) findViewById(R.id.fab_perfil);
-        fab_menu = (FloatingActionButton) findViewById(R.id.fab_menu);
-
-        //--------Animação do menu
-
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_close);
-        fab_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_rotate);
-        fab_back_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_back_rotate);
-
-        //-------Fab rotações
-
-        fab_menu.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                if (aberto) {
-                    fab_menu.startAnimation(fab_back_rotate);
-                    fab_perfil.startAnimation(fab_close);
-                    fab_perfil.setClickable(false);
-                    fab_faq.startAnimation(fab_close);
-                    fab_faq.setClickable(false);
-                    aberto = false;
-
-                } else {
-
-                    fab_menu.startAnimation(fab_rotate);
-                    fab_perfil.startAnimation(fab_open);
-                    fab_perfil.setClickable(true);
-                    fab_faq.startAnimation(fab_open);
-                    fab_faq.setClickable(true);
-                    aberto = true;
-                }
-            }
-        });
-
+//        //--------Botões de menu
+//        fab_faq = (FloatingActionButton) findViewById(R.id.fab_faq);
+//        fab_perfil = (FloatingActionButton) findViewById(R.id.fab_perfil);
+//        fab_menu = (FloatingActionButton) findViewById(R.id.fab_menu);
+//
+//        //--------Animação do menu
+//
+//        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_open);
+//        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_close);
+//        fab_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_rotate);
+//        fab_back_rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_menu_back_rotate);
+//
+//        //-------Fab rotações
+//
+//        fab_menu.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (aberto) {
+//                    fab_menu.startAnimation(fab_back_rotate);
+//                    fab_perfil.startAnimation(fab_close);
+//                    fab_perfil.setClickable(false);
+//                    fab_faq.startAnimation(fab_close);
+//                    fab_faq.setClickable(false);
+//                    aberto = false;
+//
+//                } else {
+//
+//                    fab_menu.startAnimation(fab_rotate);
+//                    fab_perfil.startAnimation(fab_open);
+//                    fab_perfil.setClickable(true);
+//                    fab_faq.startAnimation(fab_open);
+//                    fab_faq.setClickable(true);
+//                    aberto = true;
+//                }
+//            }
+//        });
+//
     }
 }

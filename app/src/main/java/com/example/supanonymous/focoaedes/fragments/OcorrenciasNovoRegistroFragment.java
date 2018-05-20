@@ -21,27 +21,44 @@ public class OcorrenciasNovoRegistroFragment extends Fragment implements View.On
 
     private View view;
     private int item;
-    private FragmentManager fragmentManager;
+    TextView foco;
+    TextView doenca;
+    private FragmentManager fragmentManager = getFragmentManager();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ocorrencias_novo_registro, container, false);
-        return v;
 
-    }
+        foco = v.findViewById(R.id.txt_foco_descricao);
+        doenca = v.findViewById(R.id.txt_descricao_doenca);
+        doenca.setOnClickListener(this);
+        foco.setOnClickListener(this);
+
+        return v;
+ }
 
     @Override
     public void onClick(View view) {
-        TextView foco = (TextView) view.findViewById(R.id.txt_foco_descricao);
+        Fragment fragment;
+        switch (view.getId()) {
+            case R.id.txt_foco_descricao:
+                fragment = new FragmentOcorrenciaRegistroFoco();
+                replaceFragment(fragment);
+                break;
+            case R.id.txt_descricao_doenca:
+                fragment = new FragmentOcorrenciaRegistroDoenca();
+                replaceFragment(fragment);
+        }
 
-        foco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = OcorrenciasNovoRegistroFragment.this.fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.NovaOcorrencia, new FragmentOcorrenciaRegistroFoco(), "Registro_foco").commit();
-            }
-        });
     }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.ocorrencias_tabs, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }
