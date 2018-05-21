@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.InformacoesFragment"
+    android:orientation="vertical"
+    android:background="#3CB371"
+    android:id="@+id/informacoesFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1.0">
+
+            <ImageView
+                android:id="@+id/sobre_voltar"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                android:tint="@android:color/white"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:id="@+id/nova_salvar"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".3"
+                android:text="Sobre"
+                android:textColor="@android:color/white"
+                android:textSize="22dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".21"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".65"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Foco Aedes"
+                android:textStyle="bold"
+                android:textColor="@color/branco"
+                android:textSize="32dp"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Versão"
+                android:textColor="@color/branco"
+                android:textSize="18dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0.3"
+                android:textColor="@color/branco"
+                android:textSize="22dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nosso aplicativo ainda está em fase de testes! Denuncie possíveis focos do mosquito espalhados pela cidade. Participe!"
+                android:textColor="@color/branco"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desenvolvido pelo Grupo de Estudo de Engenharia de Software em Saúde - GEESS para Computação Amostra!"
+                android:textColor="@color/branco"
+                android:textSize="20dp"
+                android:layout_marginTop="32dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

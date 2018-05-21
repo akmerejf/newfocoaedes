@@ -4,9 +4,8 @@
 
     <item
         android:id="@+id/navigation_mapas"
-        android:icon="@drawable/btnmapas3x"
+        android:icon="@drawable/ic_map"
         android:title="@string/title_mapa" />
-
 
     <item
         android:id="@+id/navigation_novo_registro"
@@ -17,5 +16,10 @@
         android:id="@+id/navigation_lista_ocorrencias"
         android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/title_ocorrencias" />
+
+    <item
+        android:id="@+id/navigation_configuracoes"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:title="@string/title_informacoes" />
 
 </menu>

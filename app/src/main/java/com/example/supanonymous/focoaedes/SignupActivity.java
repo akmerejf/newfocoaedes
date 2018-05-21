@@ -25,7 +25,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText tv_nome;
     private ApiService apiService;
     private AuthHelper loginHelper;
-    private Class<?> callerClass;
 
 //------------------clico de vida-------------------------------------------------------------------//
 
@@ -35,19 +34,11 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 //        apiService = ServiceGenerator.createService(ApiService.class);
-        possui_conta = findViewById(R.id.signup_possui_conta);
-        btn_cadastrar = findViewById(R.id.signup_btn_cadastrar);
-        tv_nome = findViewById(R.id.signup_nome);
-        tv_email = findViewById(R.id.signup_email);
-        tv_senha = findViewById(R.id.signup_senha);
-
-        // Referência da activity que chamou o login
-        String caller = getIntent().getStringExtra("caller");
-        try {
-            callerClass = Class.forName(caller);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        possui_conta = (TextView) findViewById(R.id.signup_possui_conta);
+        btn_cadastrar = (Button) findViewById(R.id.signup_btn_cadastrar);
+        tv_nome = (EditText) findViewById(R.id.signup_nome);
+        tv_email = (EditText) findViewById(R.id.signup_email);
+        tv_senha = (EditText) findViewById(R.id.signup_senha);
 
 //------------------Listeners-----------------------------------------------------------------------//
 
@@ -73,9 +64,12 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        possui_conta.setOnClickListener(view -> {
-            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-            finish();
+        possui_conta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                finish();
+            }
         });
 
 
@@ -85,12 +79,7 @@ public class SignupActivity extends AppCompatActivity {
     public void createAccount(Register register) {
         //validação de login api nativa
         loginHelper = new AuthHelper();
-        Intent intent;
-        if (callerClass != null){
-            intent = new Intent(SignupActivity.this, callerClass);
-        }else{
-            intent = new Intent(SignupActivity.this, MainActivity.class);
-        }
+        Intent intent = new Intent(this, MainActivity.class);
         loginHelper.createAccount(this, intent, register);
     }
     //------------------fim de codigo-------------------------------------------------------------------//

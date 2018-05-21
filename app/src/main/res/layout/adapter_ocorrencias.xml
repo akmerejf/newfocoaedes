@@ -1,87 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/cv"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/branco"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    card_view:cardCornerRadius="5dp">
+    android:padding="5dp"
+    tools:ignore="RtlSymmetry">
 
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_gravity="center_horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            >
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/principal_lista_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="5dp"
+            android:scaleType="fitXY"
+            app:riv_corner_radius="15dp"
+            android:src="@mipmap/luffy"/>
 
-            <TextView
-                android:id="@+id/textView_name"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold" />
-
-            <!--My dropdown Button -->
-            <RelativeLayout
-                android:id="@+id/button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                >
-
-                <View
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:background="@drawable/ic_add"
-                    android:layout_alignParentRight="false"
-                    android:layout_alignParentEnd="false" />
-            </RelativeLayout>
-        </RelativeLayout>
-        <!--The layout below is my ExpandableLayout -->
-        <LinearLayout
-            android:id="@+id/expandableLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/principal_lista_titulo"
+            android:layout_toRightOf="@id/principal_lista_img"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:text="Foco na minha rua"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:maxLines="2"
+            android:layout_toLeftOf="@id/data"/>
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/05/2018"
+            android:layout_alignParentRight="true" />
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/imageView_Owner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/endereco"
+            android:layout_below="@id/principal_lista_titulo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:maxLines="1"
+            android:layout_toRightOf="@id/principal_lista_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travessa Rui Barbosa, 2108 - Reduto"/>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView_Owner"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/textView_OwnerUrl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+    <!---->
+    <!--<TextView-->
+        <!--android:id="@+id/principal_lista_titulo"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="6"-->
+        <!--android:maxLines="2"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:text="mugiwara"/>-->
 
 
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+</LinearLayout>

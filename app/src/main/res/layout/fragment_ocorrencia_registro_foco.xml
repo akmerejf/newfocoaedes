@@ -1,0 +1,186 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.supanonymous.focoaedes.fragments.FragmentOcorrenciaRegistroDoenca">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
+            android:drawableTint="@color/branco" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:gravity="center_vertical"
+            android:text="Reportar Foco"
+            android:textColor="@color/branco"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/Principal" />
+
+    <ScrollView
+        android:id="@+id/view_nova_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view"
+        android:background="@android:color/white">
+
+
+        <RelativeLayout
+            android:id="@+id/view_nova_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/nota_foto"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/img"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/cinzinha2"/>
+
+            <EditText
+                android:id="@+id/nova_titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/textfield_bg"
+                android:hint="Título"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinza" />
+
+            <EditText
+                android:id="@+id/nova_endereco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nova_titulo"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/textfield_bg"
+                android:hint="Rua, Nº"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinza" />
+
+            <EditText
+                android:id="@+id/nova_bairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/nova_endereco"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/textfield_bg"
+                android:hint="Bairro"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinza" />
+
+            <ImageView
+                android:id="@+id/atual_localizacao"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/nova_bairro"
+                android:backgroundTint="@color/preto2"
+                android:tint="@color/preto"
+                app:srcCompat="@drawable/ic_add_location_black_24dp" />
+
+
+            <EditText
+                android:id="@+id/nova_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/nova_bairro"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/textfield_bg"
+                android:hint="Telefone"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinzinha"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/nova_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/nova_telefone"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/textfield_bg"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinzinha"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/nova_descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/nova_bairro"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/textfield_bg"
+                android:gravity="top|left"
+                android:hint="Descrição ..."
+                android:minLines="5"
+                android:padding="11dp"
+                android:textColor="@color/preto"
+                android:textColorHint="@color/cinza" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nova_descricao"
+                android:layout_marginTop="10dp"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btn_nova_salvar_doenca"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_borda_salvar"
+                    android:text=" Denunciar "
+                    android:textColor="@color/ic_verde" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -4,11 +4,22 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_mapa">Mapa</string>
-    <string name="title_registro">Registro</string>
+    <string name="title_registro">Registrar</string>
     <string name="title_ocorrencias">Ocorrencias</string>
+    <string name="title_informacoes">Informações</string>
     <string name="denunciar_doenca">Denuncie um possível sintoma relacionado ao mosquito da dengue ou um caso de dengue comprovado pelo seu bairro</string>
     <string name="denunciar_foco">Denuncie água parada, larva do mosquito ou qualquer coisa relacionada a proliferação do mosquito da dengue!</string>
+
     <string name="facebook_app_id">239272153481006</string>
     <string name="fb_login_protocol_scheme">fb239272153481006</string>
 
+
+    <string-array name="tipo_valores">
+        <item>Dengue</item>
+        <item>Chikungunya</item>
+        <item>Zika virus</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
