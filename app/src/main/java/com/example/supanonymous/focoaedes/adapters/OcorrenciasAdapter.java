@@ -138,7 +138,7 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public Visao(final View itemView) {
             super(itemView);
             buttonLayout = itemView.findViewById(R.id.button);
-            expandableLayout = itemView.findViewById(R.id.expandableLayout);
+//            expandableLayout = itemView.findViewById(R.id.expandableLayout);
 //            titulo = itemView.findViewById(R.id.principal_lista_titulo);
 //            item_image = itemView.findViewById(R.id.principal_lista_img);
 

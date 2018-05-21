@@ -81,7 +81,7 @@ public class OcorrenciasMapaFragment extends Fragment implements
         // Gets the MapView from the XML layout and creates it
         mapView.onCreate(savedInstanceState);
         // Gets to GoogleMap from the MapView and does initialization stuff
-//        mapView.getMapAsync(this);
+        mapView.getMapAsync(this);
         // Updates the location and zoom of the MapView
 
         return v;
@@ -91,15 +91,16 @@ public class OcorrenciasMapaFragment extends Fragment implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        map.getUiSettings().setMyLocationButtonEnabled(false);
+        map.getUiSettings().setMyLocationButtonEnabled(true);
 
         map.setMyLocationEnabled(true);
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        assert locationManager != null;
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER
         MapsInitializer.initialize(this.getActivity());
         //configurações do botões nativos da google
-        map.getUiSettings().setMapToolbarEnabled(false);
+        map.getUiSettings().setMapToolbarEnabled(true);
 
         try {
             geoLocaliza();
