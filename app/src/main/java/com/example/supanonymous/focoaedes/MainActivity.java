@@ -25,6 +25,7 @@ import com.example.supanonymous.focoaedes.fragments.InformacoesFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasListaFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasMapaFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasNovoRegistroFragment;
+import com.example.supanonymous.focoaedes.models.Localizacao;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity  {
     private Animation fab_open, fab_close, fab_rotate, fab_back_rotate;
     private boolean aberto = false;
     private Typeface fontFace = null;
+    public Localizacao localizacao;
 
     private FragmentManager fragmentManager;
     //Listener do navigation menu
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity  {
         }
         return false;
     };
+
 
     //Troca pro fragment selecionado no menu de navegação
     private void switchFragment(String tag, Fragment fragment) {

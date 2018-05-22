@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.supanonymous.focoaedes">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
@@ -67,7 +69,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".detalheDenuncaFocoActivity" />
-        <activity android:name=".DetalheDenunciaDoencaActivity"></activity>
+        <activity android:name=".DetalheDenunciaDoencaActivity"/>
     </application>
 
 </manifest>

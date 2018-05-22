@@ -12,6 +12,7 @@
         android:background="@color/colorPrimary">
 
         <TextView
+            android:id="@+id/cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
