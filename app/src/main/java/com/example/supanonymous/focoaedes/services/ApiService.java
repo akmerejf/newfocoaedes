@@ -1,11 +1,13 @@
 package com.example.supanonymous.focoaedes.services;
 
+import com.example.supanonymous.focoaedes.models.Disease;
 import com.example.supanonymous.focoaedes.models.Login;
 import com.example.supanonymous.focoaedes.models.LoginResponse;
 import com.example.supanonymous.focoaedes.models.Ocorrencia;
 import com.example.supanonymous.focoaedes.models.Perfil;
 import com.example.supanonymous.focoaedes.models.Register;
 
+import java.security.DigestInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +30,19 @@ public interface ApiService {
     @GET("ocorrencias/{id}")
     Call<Ocorrencia> getOcorrencia(@Path("id") String id);
 
+//-----------------------------------------------------------
+
+    @GET("doencas")
+    Call<List<Disease>> getDoencas(
+            @QueryMap Map<String, String> options
+    );
+    @GET("doencas")
+    Call<List<Disease>> getDoencasMap(
+    );
+
+    @GET("doencas/{id}")
+    Call<Disease> getDoenca(@Path("id") String id);
+
     @GET("perfil")
     Call<Perfil> getProfile();
 
@@ -48,4 +63,7 @@ public interface ApiService {
 
     @POST("ocorrencias")
     Call<Ocorrencia> createOcorrencia(@Body Ocorrencia ocorrencia);
+
+    @POST("doencas")
+    Call<Disease> createDoenca(@Body Disease doenca);
 }

@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.supanonymous.focoaedes.R;
@@ -47,21 +45,12 @@ public class OcorrenciasNovoRegistroFragment extends Fragment implements View.On
             case R.id.txt_foco_descricao:
                 Intent intent = new Intent(getContext(), ActivityOcorrenciaRegistroFoco.class );
                 getContext().startActivity(intent);
-//                fragment = new ActivityOcorrenciaRegistroFoco();
-//                replaceFragment(fragment);
                 break;
             case R.id.txt_descricao_doenca:
-                fragment = new FragmentOcorrenciaRegistroDoenca();
-                replaceFragment(fragment);
+                Intent i = new Intent(getContext(), ActivityOcorrenciaRegistroDoenca.class );
+                getContext().startActivity(i);
+                break;
         }
 
     }
-
-    public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.ocorrencias_tabs, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
 }

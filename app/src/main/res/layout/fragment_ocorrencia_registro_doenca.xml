@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.supanonymous.focoaedes.fragments.FragmentOcorrenciaRegistroDoenca">
+    tools:context="com.example.supanonymous.focoaedes.fragments.ActivityOcorrenciaRegistroDoenca">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -12,6 +12,7 @@
         android:background="@color/colorPrimary">
 
         <TextView
+            android:id="@+id/cancelarDoenca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
@@ -94,39 +95,6 @@
                 android:layout_marginRight="16dp"
                 android:tint="@color/preto"
                 app:srcCompat="@drawable/ic_add_location_black_24dp" />
-
-
-            <EditText
-                android:id="@+id/nova_telefone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/nova_bairro"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/textfield_bg"
-                android:hint="Telefone"
-                android:inputType="phone"
-                android:maxLines="1"
-                android:padding="11dp"
-                android:textColor="@color/preto"
-                android:textColorHint="@color/cinzinha"
-                android:visibility="gone" />
-
-            <EditText
-                android:id="@+id/nova_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/nova_telefone"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/textfield_bg"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:padding="11dp"
-                android:textColor="@color/preto"
-                android:textColorHint="@color/cinzinha"
-                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/nova_descricao"

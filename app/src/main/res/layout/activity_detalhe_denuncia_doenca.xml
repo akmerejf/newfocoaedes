@@ -13,6 +13,7 @@
         android:layout_height="56dp"
         android:background="@color/colorPrimary">
         <TextView
+            android:id="@+id/btnVoltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_arrow_back_black_24dp"
@@ -66,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detalhe_tipo"
-                    android:text="Dengue, zika, tudo" />
+                    android:text="" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -88,7 +89,7 @@
                     android:id="@+id/detalhe_titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Agua parada"
+                    android:text="Relato"
                     android:textColor="@color/preto"
                     android:textSize="23dp"
                     android:textStyle="bold" />
@@ -98,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detalhe_titulo"
-                    android:text="Uma poça de agua está localizada na minha a uma semana e está começando a criar larva do mosquito da dengue!"/>
+                    android:text=""/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -126,11 +127,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/detalhe_endereco"
+                    android:id="@+id/detalhe_endereco_doenca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detalhe_local"
-                    android:text="Trav. Rui barbosa, 2108 - Nazaré" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -139,7 +140,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignRight="@id/detalhe_endereco"
-                    android:text="18/05/2018" />
+                    android:text="" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
