@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "162598826786",
+    "firebase_url": "https://focoaedes-2b498.firebaseio.com",
+    "project_id": "focoaedes-2b498",
+    "storage_bucket": "focoaedes-2b498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162598826786:android:4e9e89a6f737aa0c",
+        "android_client_info": {
+          "package_name": "com.example.supanonymous.focoaedes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162598826786-6c4he1tdtlec5bpr8i1rubl6kc4qp3g5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.supanonymous.focoaedes",
+            "certificate_hash": "b9015bfcb61d8d7914de3f47dcbbd76c14de4ca6"
+          }
+        },
+        {
+          "client_id": "162598826786-ejjrrgrs39tgohp5b3u57nhu4lgu2gs1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO6xDvcebH_qLAy69MCnfHiiOplfdPDCI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162598826786-ejjrrgrs39tgohp5b3u57nhu4lgu2gs1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
