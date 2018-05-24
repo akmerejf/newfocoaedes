@@ -112,7 +112,7 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public Visao(final View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.doenca_lista_titulo);
+            titulo = itemView.findViewById(R.id.principal_lista_titulo);
             endereco = itemView.findViewById(R.id.endereco);
             item_image = itemView.findViewById(R.id.principal_lista_img);
             data = itemView.findViewById(R.id.data);

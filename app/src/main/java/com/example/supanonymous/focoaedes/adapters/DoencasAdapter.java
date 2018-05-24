@@ -70,8 +70,8 @@ public class DoencasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder visao, int position) {
 
-        ((DoencasAdapter.Visao)visao).titulo.setText(doencas.get(position).getDescricao());
-        ((DoencasAdapter.Visao)visao).endereco.setText(doencas.get(position).getEndereco()+" - "+doencas.get(position).getBairro());
+        ((Visao)visao).titulo.setText(doencas.get(position).getDescricao());
+        ((Visao)visao).endereco.setText(doencas.get(position).getEndereco()+" - "+doencas.get(position).getBairro());
         }
 
 
@@ -97,7 +97,7 @@ public class DoencasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public Visao(final View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.principal_lista_titulo);
+            titulo = itemView.findViewById(R.id.doenca_lista_titulo);
             endereco = itemView.findViewById(R.id.endereco_doenca_lista);
             data = itemView.findViewById(R.id.data_lista_doenca);
 
