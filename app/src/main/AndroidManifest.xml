@@ -12,8 +12,8 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-     <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +31,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
+
         <service android:name=".authenticator.AuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -82,10 +83,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetalheDenunciaFocoActivity" />
-        <activity android:name=".DetalheDenunciaDoencaActivity"/>
-        <activity android:name=".fragments.ActivityOcorrenciaRegistroFoco"/>
-        <activity android:name=".fragments.ActivityOcorrenciaRegistroDoenca"/>
-
+        <activity android:name=".DetalheDenunciaDoencaActivity" />
+        <activity android:name=".fragments.ActivityOcorrenciaRegistroFoco" />
+        <activity android:name=".fragments.ActivityOcorrenciaRegistroDoenca" />
+        <activity android:name=".adapters.DoencasAdapter"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,8 @@
 
     <string name="facebook_app_id">239272153481006</string>
     <string name="fb_login_protocol_scheme">fb239272153481006</string>
-
+    
+    <string name="frag_one">Doenças</string>
 
     <string-array name="tipo_valores">
         <item>Dengue</item>

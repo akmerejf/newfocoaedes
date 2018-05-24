@@ -23,6 +23,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.supanonymous.focoaedes.adapters.FragmentTabLista;
 import com.example.supanonymous.focoaedes.fragments.InformacoesFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasListaFragment;
 import com.example.supanonymous.focoaedes.fragments.OcorrenciasMapaFragment;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity  {
                 switchFragment("ocorrencias_novo_registro", new OcorrenciasNovoRegistroFragment());
                 return true;
             case R.id.navigation_lista_ocorrencias:
-                switchFragment("ocorrencias_lista", new OcorrenciasListaFragment());
+                switchFragment("tab_lista", new FragmentTabLista());
                 return true;
             case R.id.navigation_configuracoes:
                 switchFragment("informacoesFragment", new InformacoesFragment());

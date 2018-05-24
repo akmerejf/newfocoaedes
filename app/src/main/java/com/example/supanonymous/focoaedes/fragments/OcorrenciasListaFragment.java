@@ -45,7 +45,7 @@ public class OcorrenciasListaFragment extends Fragment {
 
         //Monta listview e adapter
 
-        recyclerView = view.findViewById(R.id.principal_lista);
+        recyclerView = view.findViewById(R.id.ocorrencia_lista);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

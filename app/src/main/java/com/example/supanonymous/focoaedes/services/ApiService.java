@@ -34,7 +34,6 @@ public interface ApiService {
 
     @GET("doencas")
     Call<List<Disease>> getDoencas(
-            @QueryMap Map<String, String> options
     );
     @GET("doencas")
     Call<List<Disease>> getDoencasMap(
@@ -66,4 +65,5 @@ public interface ApiService {
 
     @POST("doencas")
     Call<Disease> createDoenca(@Body Disease doenca);
+
 }

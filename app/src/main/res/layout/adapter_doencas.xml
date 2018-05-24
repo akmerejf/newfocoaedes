@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:layout_marginTop="2dp"
+    android:layout_centerHorizontal="true"
+    tools:context=".adapters.DoencasAdapter">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/doenca_lista_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:maxLines="2"
+                android:textSize="23sp"
+                android:text="Chico"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/data_lista_doenca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="10/05/2018" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/doenca_lista_descricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/doenca_lista_titulo"
+                android:maxLines="2"
+                android:layout_marginLeft="10dp"
+                android:text="lkjhdfslkhfdaskljhfdsakljhfdskjh"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/endereco_doenca_lista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/doenca_lista_descricao"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:text="Travessa Rui Barbosa, 2108 - Reduto" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
