@@ -82,91 +82,91 @@ public class OcorrenciasHelper {
             }
         });
     }
-    public void ocorrenciasList(final List<Ocorrencia> itemsList, final RecyclerView.Adapter adapter, final HorizontalDottedProgress loadingBar, final TextView noItems) {
-        Map<String, String> queryParams = new HashMap<>();
-        queryParams.put("page", String.valueOf(1));
-        apiService = ServiceGenerator.createService(ApiService.class);
-        apiService.getOcorrencias(queryParams).enqueue(new Callback<List<Ocorrencia>>() {
-            //metodos de respostas
-            @Override
-            public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
-                loadingBar.clearAnimation();
-                loadingBar.setVisibility(View.GONE);
-                if (!response.isSuccessful()) {
-                    Log.i("LISTA", "Erro: " + "Erro: " + response.code());
-                    switch (response.code()){
-                        case 404:
-                            noItems.setText("Nenhum item encontrado.");
-                            noItems.setVisibility(View.VISIBLE);
-                            break;
-                        default:
-                            noItems.setText("Ocorreu um erro, tente novamente.");
-                            noItems.setVisibility(View.VISIBLE);
-                            break;
-                    }
-                } else {
-                    //condição se os dados foram capturados
-                    itemsList.addAll(response.body());
-                    if (itemsList.size() > 0){
-                        //Atualiza o adapter com os items da api
-                        adapter.notifyDataSetChanged();
-                    }else{
-                        noItems.setText("Nenhum item encontrado.");
-                        noItems.setVisibility(View.VISIBLE);
-                    }
-                }
+//    public void ocorrenciasList(final List<Ocorrencia> itemsList, final RecyclerView.Adapter adapter, final HorizontalDottedProgress loadingBar, final TextView noItems) {
+//        Map<String, String> queryParams = new HashMap<>();
+//        queryParams.put("page", String.valueOf(1));
+//        apiService = ServiceGenerator.createService(ApiService.class);
+//        apiService.getOcorrencias(queryParams).enqueue(new Callback<List<Ocorrencia>>() {
+//            //metodos de respostas
+//            @Override
+//            public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
+//                loadingBar.clearAnimation();
+//                loadingBar.setVisibility(View.GONE);
+//                if (!response.isSuccessful()) {
+//                    Log.i("LISTA", "Erro: " + "Erro: " + response.code());
+//                    switch (response.code()){
+//                        case 404:
+//                            noItems.setText("Nenhum item encontrado.");
+//                            noItems.setVisibility(View.VISIBLE);
+//                            break;
+//                        default:
+//                            noItems.setText("Ocorreu um erro, tente novamente.");
+//                            noItems.setVisibility(View.VISIBLE);
+//                            break;
+//                    }
+//                } else {
+//                    //condição se os dados foram capturados
+//                    itemsList.addAll(response.body());
+//                    if (itemsList.size() > 0){
+//                        //Atualiza o adapter com os items da api
+//                        adapter.notifyDataSetChanged();
+//                    }else{
+//                        noItems.setText("Nenhum item encontrado.");
+//                        noItems.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Ocorrencia>> call, Throwable t) {
+//                loadingBar.clearAnimation();
+//                loadingBar.setVisibility(View.GONE);
+//                noItems.setText("Falha ao se conectar com o servidor. Tente novamente");
+//                noItems.setVisibility(View.VISIBLE);
+//                Log.i("LISTA", "Erro: " + t.toString());
+//            }
+//        });
+//    }
 
-            }
 
-            @Override
-            public void onFailure(Call<List<Ocorrencia>> call, Throwable t) {
-                loadingBar.clearAnimation();
-                loadingBar.setVisibility(View.GONE);
-                noItems.setText("Falha ao se conectar com o servidor. Tente novamente");
-                noItems.setVisibility(View.VISIBLE);
-                Log.i("LISTA", "Erro: " + t.toString());
-            }
-        });
-    }
-
-
-    public void nextOcorrencias(final List<Ocorrencia> itemsList, final OcorrenciasAdapter adapter) {
-        // parametros de busca
-        Map<String, String> queryParams = new HashMap<>();
-//        queryParams.put("search", "Marcus");
-        queryParams.put("page", String.valueOf(nextPage));
-        apiService = ServiceGenerator.createService(ApiService.class);
-        apiService.getOcorrencias(queryParams).enqueue(new Callback<List<Ocorrencia>>() {
-            //metodos de respostas
-            @Override
-            public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
-                if (!response.isSuccessful()) {
-                    Log.i("LISTA", "Erro: " + "Erro: " + response.code());
-                } else { //condição se os dados foram capturados
-                    //Salva os headers de paginação
-                    totalPages = Integer.parseInt(response.headers().get("X-Total")) / Integer.parseInt(response.headers().get("X-Per-Page"));
-                    itemsList.remove(itemsList.size() - 1);
-                    adapter.notifyItemRemoved(itemsList.size());
-                    if (nextPage > totalPages){
-                        adapter.setListEnd();
-                    }
-                    nextPage = Integer.parseInt(response.headers().get("X-Page")) + 1;
-                    itemsList.addAll(response.body());
-                    //Atualiza o adapter com os items da api
-                    adapter.notifyDataSetChanged();
-                    adapter.setLoaded();
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Ocorrencia>> call, Throwable t) {
-                Toast.makeText(context, "Houve um erro.", Toast.LENGTH_SHORT).show();
-
-                Log.i("LISTA", "Erro: " + t.toString());
-            }
-        });
-    }
+//    public void nextOcorrencias(final List<Ocorrencia> itemsList, final OcorrenciasAdapter adapter) {
+//        // parametros de busca
+//        Map<String, String> queryParams = new HashMap<>();
+////        queryParams.put("search", "Marcus");
+//        queryParams.put("page", String.valueOf(nextPage));
+//        apiService = ServiceGenerator.createService(ApiService.class);
+//        apiService.getOcorrencias(queryParams).enqueue(new Callback<List<Ocorrencia>>() {
+//            //metodos de respostas
+//            @Override
+//            public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
+//                if (!response.isSuccessful()) {
+//                    Log.i("LISTA", "Erro: " + "Erro: " + response.code());
+//                } else { //condição se os dados foram capturados
+//                    //Salva os headers de paginação
+//                    totalPages = Integer.parseInt(response.headers().get("X-Total")) / Integer.parseInt(response.headers().get("X-Per-Page"));
+//                    itemsList.remove(itemsList.size() - 1);
+//                    adapter.notifyItemRemoved(itemsList.size());
+//                    if (nextPage > totalPages){
+//                        adapter.setListEnd();
+//                    }
+//                    nextPage = Integer.parseInt(response.headers().get("X-Page")) + 1;
+//                    itemsList.addAll(response.body());
+//                    //Atualiza o adapter com os items da api
+//                    adapter.notifyDataSetChanged();
+//                    adapter.setLoaded();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Ocorrencia>> call, Throwable t) {
+//                Toast.makeText(context, "Houve um erro.", Toast.LENGTH_SHORT).show();
+//
+//                Log.i("LISTA", "Erro: " + t.toString());
+//            }
+//        });
+//    }
 
 
     public void showOcorrencia(final Intent intent, String itemId) {

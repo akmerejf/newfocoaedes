@@ -21,8 +21,8 @@ import retrofit2.http.QueryMap;
 public interface ApiService {
     @GET("ocorrencias")
     Call<List<Ocorrencia>> getOcorrencias(
-            @QueryMap Map<String, String> options
     );
+
     @GET("ocorrencias")
     Call<List<Ocorrencia>> getOcorrenciasMap(
     );

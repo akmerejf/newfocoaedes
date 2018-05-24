@@ -3,6 +3,7 @@ package com.example.supanonymous.focoaedes.adapters;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -16,6 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.supanonymous.focoaedes.DetalheDenunciaFocoActivity;
+import com.example.supanonymous.focoaedes.MainActivity;
 import com.example.supanonymous.focoaedes.OcorrenciaDetails;
 import com.example.supanonymous.focoaedes.R;
 import com.example.supanonymous.focoaedes.helpers.OcorrenciasHelper;
@@ -28,51 +34,21 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
 
-    static List<Ocorrencia> items;
-    static Context context;
-    private static OcorrenciasHelper itemsHelper;
+     List<Ocorrencia> ocorrencias;
+     Context context;
 
     // Items para adicionar dinamicamente ao fim da lista
-    private int visibleThreshold = 3;
-    private int lastVisibleItem, totalItemCount;
-    private boolean loading;
-    private OnLoadMoreListener onLoadMoreListener;
-    private boolean listEnd = false;
-    private SparseBooleanArray expandState = new SparseBooleanArray();
 
-    public OcorrenciasAdapter(List<Ocorrencia> items, Context context, RecyclerView recyclerView) {
-        OcorrenciasAdapter.items = items;
-        OcorrenciasAdapter.context = context;
 
-        for (int i = 0; i < OcorrenciasAdapter.items.size(); i++) {
-            expandState.append(i, false);
-        }
+    public OcorrenciasAdapter(List<Ocorrencia> ocorrencias, Context context, RecyclerView recyclerView) {
+        this.context = context;
+        this.ocorrencias = ocorrencias;
 
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-
-            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-//            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//                @Override
-//                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                    super.onScrolled(recyclerView, dx, dy);
-//                    totalItemCount = linearLayoutManager.getItemCount();
-//                    lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-//                    if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-//                        // End has been reached
-//                        // Do something
-//                        if (onLoadMoreListener != null) {
-//                            onLoadMoreListener.onLoadMore();
-//                        }
-//                        loading = true;
-//                    }
-//                }
-//            });
-        }
     }
 
     @Override
     public int getItemViewType(int position) {
-        return items.get(position) != null ? VIEW_ITEM : VIEW_PROG;
+        return ocorrencias.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 
     @Override
@@ -92,70 +68,32 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return vh;
     }
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder visao, int position) {
-        if (visao instanceof Visao) {
-            ((Visao)visao).titulo.setText(items.get(position).getTitulo());
-            visao.setIsRecyclable(false);
-            final boolean isExpanded = expandState.get(position);
-            ((Visao)visao).expandableLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-
-            ((Visao)visao).buttonLayout.setRotation(expandState.get(position) ? 180f : 0f);
-            ((Visao)visao).buttonLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickButton(((Visao)visao).expandableLayout, ((Visao)visao).buttonLayout,  position);
-                }
-            });
-//            if (items.get(position).getFotinhas().size() > 0)
-//                Glide.with(context).load(items.get(position).getFotinhas().get(0).getUrl()).into(((Visao)visao).item_image);//altera o icone
-
-        } else {
-            ((ProgressViewHolder) visao).progressBar.setIndeterminate(true);
-        }
-    }
 
 
     @Override
     public int getItemCount() {
 
-        return items.size();
+        return ocorrencias.size();
     }
 
-    public boolean isListEnd() {
-        return listEnd;
-    }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder visao, int position) {
 
-    public  class Visao extends RecyclerView.ViewHolder{
+            ((Visao)visao).titulo.setText(ocorrencias.get(position).getTitulo());
+            ((Visao)visao).endereco.setText(ocorrencias.get(position).getEndereco()+" - "+ocorrencias.get(position).getBairro());
+            Glide.with(context).load(ocorrencias.get(position).getImagems().get(0).getUrl())
+                    .into(((Visao)visao).item_image);
+//            if (items.get(position).getFotinhas().size() > 0)
+//                Glide.with(context).load(items.get(position).getFotinhas().get(0).getUrl()).into(((Visao)visao).item_image);//altera o icone
 
-        TextView titulo;
-
-        RoundedImageView item_image;
-
-        RelativeLayout buttonLayout;
-        LinearLayout expandableLayout;
-
-        public Visao(final View itemView) {
-            super(itemView);
-            buttonLayout = itemView.findViewById(R.id.button);
-//            expandableLayout = itemView.findViewById(R.id.expandableLayout);
-//            titulo = itemView.findViewById(R.id.principal_lista_titulo);
-//            item_image = itemView.findViewById(R.id.principal_lista_img);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-//                    itemsHelper = new OcorrenciasHelper(context);
-//                    Intent intent = new Intent(context, OcorrenciaDetails.class);
-//                    itemsHelper.showOcorrencia(intent, items.get(getAdapterPosition()).getId());
-                }
-            });
-        }
 
     }
+
+
     public static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
+
+
+        ProgressBar progressBar;
 
         public ProgressViewHolder(View v) {
             super(v);
@@ -163,42 +101,32 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public void setLoaded() {
-        loading = false;
-    }
+    public  class Visao extends RecyclerView.ViewHolder{
 
-    public void setListEnd(){
-        listEnd = true;
-    }
+        TextView data;
+        TextView endereco;
+        TextView titulo;
 
-    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
-        this.onLoadMoreListener = onLoadMoreListener;
-    }
-
-    public interface OnLoadMoreListener {
-        void onLoadMore();
-    }
+        RoundedImageView item_image;
 
 
-    private void onClickButton(final LinearLayout expandableLayout, final RelativeLayout buttonLayout, final  int i) {
+        public Visao(final View itemView) {
+            super(itemView);
+            titulo = itemView.findViewById(R.id.principal_lista_titulo);
+            endereco = itemView.findViewById(R.id.endereco);
+            item_image = itemView.findViewById(R.id.principal_lista_img);
+            data = itemView.findViewById(R.id.data);
 
-        //Simply set View to Gone if not expanded
-        //Not necessary but I put simple rotation on button layout
-        if (expandableLayout.getVisibility() == View.VISIBLE){
-            createRotateAnimator(buttonLayout, 180f, 0f).start();
-            expandableLayout.setVisibility(View.GONE);
-            expandState.put(i, false);
-        }else{
-            createRotateAnimator(buttonLayout, 0f, 180f).start();
-            expandableLayout.setVisibility(View.VISIBLE);
-            expandState.put(i, true);
+            itemView.setOnClickListener(v -> {
+                String ocorrenciaId = ocorrencias.get(getAdapterPosition()).getId();
+                Intent intent = new Intent(context, DetalheDenunciaFocoActivity.class);
+                intent.putExtra("ocorrencia_id", ocorrenciaId);
+                context.startActivity(intent);
+            });
+
         }
+
     }
 
-    private ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
-        animator.setDuration(300);
-        animator.setInterpolator(new LinearInterpolator());
-        return animator;
-    }
+
 }

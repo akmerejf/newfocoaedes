@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,11 +30,11 @@ import retrofit2.Response;
 
 public class OcorrenciasListaFragment extends Fragment {
 
-
-    private ArrayList ocorrencias;
+    private List<Ocorrencia> ocorrencias;
     private RecyclerView recyclerView;
     private OcorrenciasAdapter adapter;
     private ApiService apiService;
+    private LinearLayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -45,7 +46,9 @@ public class OcorrenciasListaFragment extends Fragment {
         //Monta listview e adapter
 
         recyclerView = view.findViewById(R.id.principal_lista);
-
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
 
         adapter = new OcorrenciasAdapter(ocorrencias, getContext(), recyclerView);
         recyclerView.setAdapter(adapter);
@@ -57,7 +60,7 @@ public class OcorrenciasListaFragment extends Fragment {
 
     private void getOcorrencias() {
         apiService = ServiceGenerator.createService(ApiService.class);
-        apiService.getOcorrenciasMap().enqueue(new Callback<List<Ocorrencia>>() {
+        apiService.getOcorrencias().enqueue(new Callback<List<Ocorrencia>>() {
             @Override
             public void onResponse(Call<List<Ocorrencia>> call, Response<List<Ocorrencia>> response) {
                 if (!response.isSuccessful()) {
