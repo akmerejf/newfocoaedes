@@ -1,7 +1,9 @@
 package com.example.supanonymous.focoaedes.models;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+
+import java.util.List;
 
 /**
  * Created by supanonymous on 11/04/18.
@@ -11,18 +13,24 @@ public class Ocorrencia {
     @SerializedName("_id")
     @Expose
     private MongoId id;
-    @SerializedName("tipo")
-    @Expose
-    private String tipo;
-    @SerializedName("descricao")
+
+    @SerializedName("description")
     @Expose
     private String descricao;
-    @SerializedName("local")
+    @SerializedName("address")
     @Expose
-    private String local;
-    @SerializedName("profile_id")
+    private String endereco;
+    @SerializedName("district")
     @Expose
-    private MongoId profile_id;
+    private String bairro;
+
+    @SerializedName("images")
+    @Expose
+    private List<Imagem> imagems = null;
+
+//    @SerializedName("profile_id")
+//    @Expose
+//    private MongoId profile_id;
     @SerializedName("lat")
     @Expose
     private String lat;
@@ -31,18 +39,53 @@ public class Ocorrencia {
     private String lng;
     @SerializedName("name")
     @Expose
-    private String name;
+    private String titulo;
 
-    public String getName() {
-        return name;
+
+    public Ocorrencia(String descricao, String endereco, String bairro, List<Imagem> images, String lat, String lng, String titulo) {
+        this.descricao = descricao;
+        this.endereco = endereco;
+        this.bairro = bairro;
+        this.imagems = images;
+        this.lat = lat;
+        this.lng = lng;
+        this.titulo = titulo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<Imagem> getImagems() {
+        return imagems;
+    }
+
+    public void setImagems(List<Imagem> imagems) {
+        this.imagems = imagems;
     }
 
     public String getLat() {
         return lat;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public void setLat(String lat) {
@@ -65,13 +108,6 @@ public class Ocorrencia {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -81,19 +117,12 @@ public class Ocorrencia {
         this.descricao = descricao;
     }
 
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
-    }
-
-    public MongoId getProfile_id() {
-        return profile_id;
-    }
-
-    public void setProfile_id(MongoId profile_id) {
-        this.profile_id = profile_id;
-    }
+//
+//    public MongoId getProfile_id() {
+//        return profile_id;
+//    }
+//
+//    public void setProfile_id(MongoId profile_id) {
+//        this.profile_id = profile_id;
+//    }
 }

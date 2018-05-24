@@ -95,7 +95,7 @@ public class OcorrenciasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder visao, int position) {
         if (visao instanceof Visao) {
-            ((Visao)visao).titulo.setText(items.get(position).getName());
+            ((Visao)visao).titulo.setText(items.get(position).getTitulo());
             visao.setIsRecyclable(false);
             final boolean isExpanded = expandState.get(position);
             ((Visao)visao).expandableLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);

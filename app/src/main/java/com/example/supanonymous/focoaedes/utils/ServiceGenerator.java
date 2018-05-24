@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ServiceGenerator {
-    public static final String BASE_URL = "http://192.168.0.9   :3000/api/v1/";
+    public static final String BASE_URL = "https://focoaedes.herokuapp.com/api/v1/";
 
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

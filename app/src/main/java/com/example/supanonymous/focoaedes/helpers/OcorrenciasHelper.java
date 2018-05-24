@@ -171,7 +171,7 @@ public class OcorrenciasHelper {
 
     public void showOcorrencia(final Intent intent, String itemId) {
         apiService = ServiceGenerator.createService(ApiService.class);
-        apiService.getUserOcorrencia(itemId).enqueue(new Callback<Ocorrencia>() {
+        apiService.getOcorrencia(itemId).enqueue(new Callback<Ocorrencia>() {
             //metodos de respostas
             @Override
             public void onResponse(Call<Ocorrencia> call, Response<Ocorrencia> response) {
@@ -181,7 +181,7 @@ public class OcorrenciasHelper {
 //                    context.startActivity(res);
                     Log.i("LISTA", "Erro: " + "Erro: " + response.code());
                 } else {
-                    intent.putExtra("OCORRENCIA_TIPO", response.body().getTipo());
+//                    intent.putExtra("OCORRENCIA_TIPO", response.body().get());
                     intent.putExtra("OCORRENCIA_DESCRIPTION", response.body().getDescricao());
                     context.startActivity(intent);
                 }
@@ -253,7 +253,7 @@ public class OcorrenciasHelper {
                     Log.i("CREATE_ITEM", "Erro: " + response.code());
                 } else {
                     intent = new Intent(context, OcorrenciaDetails.class);
-                    intent.putExtra("OCORRENCIA_TIPO", response.body().getTipo());
+//                    intent.putExtra("OCORRENCIA_TIPO", response.body().getTipo());
                     intent.putExtra("OCORRENCIA_DESC", response.body().getDescricao());
 //                    intent.putExtra("ITEM_IMAGE_DETAIL", response.body().getFotinhas().get(0).getUrl());
                     context.startActivity(intent);

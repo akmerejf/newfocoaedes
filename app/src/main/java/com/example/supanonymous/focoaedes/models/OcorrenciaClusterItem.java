@@ -18,7 +18,7 @@ public class OcorrenciaClusterItem implements ClusterItem {
         mPosition = new LatLng(lat, lng);
     }
 
-    public OcorrenciaClusterItem(double lat, double lng, String title, String snippet, String id) {
+    public OcorrenciaClusterItem( double lat, double lng, String title, String snippet, String id) {
         mPosition = new LatLng(lat, lng);
         mTitle = title;
         mSnippet = snippet;

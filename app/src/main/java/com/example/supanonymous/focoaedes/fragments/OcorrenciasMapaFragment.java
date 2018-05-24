@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.supanonymous.focoaedes.OcorrenciaDetails;
+import com.example.supanonymous.focoaedes.DetalheDenunciaFocoActivity;
 import com.example.supanonymous.focoaedes.R;
 import com.example.supanonymous.focoaedes.models.Ocorrencia;
 import com.example.supanonymous.focoaedes.models.OcorrenciaClusterItem;
@@ -130,7 +130,7 @@ public class OcorrenciasMapaFragment extends Fragment implements
                         for (Ocorrencia ocorrencia : response.body()){
                           double lat = Double.valueOf(ocorrencia.getLat());
                           double lng = Double.valueOf(ocorrencia.getLng());
-                          OcorrenciaClusterItem clusterItem = new OcorrenciaClusterItem(lat, lng, ocorrencia.getName(), ocorrencia.getDescricao(), ocorrencia.getId());
+                          OcorrenciaClusterItem clusterItem = new OcorrenciaClusterItem(lat, lng, ocorrencia.getTitulo(), ocorrencia.getDescricao(), ocorrencia.getId());
                           ocorrenciaMarkerIdMap.put(ocorrencia.getId(), clusterItem);
                           listaClusterItems.add(clusterItem);
                           listaOcorrencia.add(ocorrencia);
@@ -190,7 +190,7 @@ public class OcorrenciasMapaFragment extends Fragment implements
                 });
         mClusterManager.setOnClusterItemInfoWindowClickListener(ocorrenciaClusterItem -> {
             clickedClusterItem = ocorrenciaClusterItem;
-            Intent intent = new Intent(getContext(), OcorrenciaDetails.class);
+            Intent intent = new Intent(getContext(), DetalheDenunciaFocoActivity.class);
             intent.putExtra("ocorrencia_id", ocorrenciaClusterItem.getmId());
             getActivity().startActivity(intent);
         });

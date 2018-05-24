@@ -1,5 +1,6 @@
 package com.example.supanonymous.focoaedes.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -44,8 +45,10 @@ public class OcorrenciasNovoRegistroFragment extends Fragment implements View.On
         Fragment fragment;
         switch (view.getId()) {
             case R.id.txt_foco_descricao:
-                fragment = new FragmentOcorrenciaRegistroFoco();
-                replaceFragment(fragment);
+                Intent intent = new Intent(getContext(), ActivityOcorrenciaRegistroFoco.class );
+                getContext().startActivity(intent);
+//                fragment = new ActivityOcorrenciaRegistroFoco();
+//                replaceFragment(fragment);
                 break;
             case R.id.txt_descricao_doenca:
                 fragment = new FragmentOcorrenciaRegistroDoenca();

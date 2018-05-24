@@ -1,5 +1,7 @@
 package com.example.supanonymous.focoaedes;
 
+import android.*;
+import android.Manifest;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -95,6 +97,9 @@ public class MainActivity extends AppCompatActivity  {
         Dexter.withActivity(this)
                 .withPermissions(
                         android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
                         android.Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
                     @Override

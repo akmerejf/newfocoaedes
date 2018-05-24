@@ -25,8 +25,8 @@ public interface ApiService {
     Call<List<Ocorrencia>> getOcorrenciasMap(
     );
 
-    @GET("ocorrencia/{id}")
-    Call<Ocorrencia> getUserOcorrencia(@Path("id") String id);
+    @GET("ocorrencias/{id}")
+    Call<Ocorrencia> getOcorrencia(@Path("id") String id);
 
     @GET("perfil")
     Call<Perfil> getProfile();
@@ -47,5 +47,5 @@ public interface ApiService {
     Call<LoginResponse> verifyUser(@Body Login login);
 
     @POST("ocorrencias")
-    Call<Ocorrencia> createOcorrencia(@Body Ocorrencia item);
+    Call<Ocorrencia> createOcorrencia(@Body Ocorrencia ocorrencia);
 }
